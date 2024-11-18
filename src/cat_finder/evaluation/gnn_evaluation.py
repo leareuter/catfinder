@@ -54,7 +54,7 @@ class Evaluation:
         )
 
         print(f'Best model from epoch:{loaded_model["epoch"]} ')
-        self.net.load_state_dict(loaded_model["model_state_dict"])
+        self.net.load_state_dict(loaded_model["model_state_dict"], strict=False)
         # set model to evaluation
         self.net.eval()
 
