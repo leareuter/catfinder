@@ -1,0 +1,67 @@
+dataset:
+  input_dir: ./paper_dataset/
+  val_input_dir: ./paper_dataset/
+  torch_dir: ./paper_dataset/
+  seed: 4
+  input_features: [
+            'cdchit_middle_x',
+            'cdchit_middle_y',
+            'cdchit_tdc',
+            'cdchit_adc',
+            "cdchit_superlayer",
+            "cdchit_clayer",
+            'cdchit_layer',
+            ] 
+  scaling:
+    cdchit_middle_x : [100,0]
+    cdchit_middle_y : [100,0]
+    cdchit_superlayer: [8,0]
+    cdchit_clayer: [56,0]
+    cdchit_layer: [8,0]
+    cdchit_tdc: [1100,4100]
+    cdchit_adc: [600,0]
+    cdchit_mc_productionvertex_x: [100,0]
+    cdchit_mc_productionvertex_y: [100,0]
+    cdchit_mc_productionvertex_z: [100,0]
+  clipping:
+    cdchit_adc: [0,600]
+  truth: [
+                "is_signal",
+                "objidx",
+                'cdchit_mc_px',
+                'cdchit_mc_py',
+                'cdchit_mc_pz',
+                'cdchit_mc_productionvertex_x',
+                'cdchit_mc_productionvertex_y',
+                'cdchit_mc_productionvertex_z',
+                'positive_charge',
+            ]
+  samples_per_file: 10 
+  evt_type: train
+  val_type: val
+  val_samples_per_file: 10
+  stereo: True
+train:
+  epochs: 1000 
+  batch_size: 16 
+  learning_rate: 0.0005
+  num_workers: 4
+  early_stopping: True
+  optimiser: 'Adam'
+  pretrained: False
+val:
+  batch_size: 16
+  num_workers: 4
+output:
+  run_name:  "run_pretraining"
+  output_dir: './results/'
+  logging: './logging/'
+model:
+  k: 54 
+  blocks: 4 
+  n_objects: 15
+  coord_dim: 3
+  space_dimensions: 5
+  dim1: 126
+  dim2: 16
+  momentum: 0.77

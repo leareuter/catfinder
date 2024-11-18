@@ -1,0 +1,15 @@
+# Editor configuration #
+# #################### #
+.idea
+.vscode
+
+# Python byte code #
+# ################ #
+*.py[cod]
+
+# Installed package
+*/cat_finder.egg-info/*
+
+*.pt
+results/*
+venv/*
