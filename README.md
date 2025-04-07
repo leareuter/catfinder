@@ -1,8 +1,9 @@
 # The Belle II CDC AI Track (CAT) Finder
 
 [![License: LGPL v3 or later](https://img.shields.io/badge/License-LGPL%20v3%20or%20later-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14181606.svg)](https://doi.org/10.5281/zenodo.14181606)
 
-This repository contains the training code used in the paper "End-to-End Multi-Track Reconstruction using Graph Neural Networks at Belle II". 
+This repository contains the training code used in the paper "End-to-End Multi-Track Reconstruction using Graph Neural Networks at Belle II" (https://arxiv.org/abs/2411.13596). 
 
 ## Installation
 This project requires **Python 3.9** or higher.
