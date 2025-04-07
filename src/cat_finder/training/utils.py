@@ -29,6 +29,26 @@ class SaveBestModel:
             )
 
 
+def load_model(modelpath):
+    """
+    Load the PyTorch model from the specified path.
+    This is necessary as DataParallel changes the model state dict keys.
+    Args:
+        modelpath (str): Path to the model file.
+    Returns:
+        dict: model state dictionary
+    """
+    saved_model = torch.load(modelpath, map_location=torch.device("cpu"))
+    # remove DataParallel wrapper
+    state_dict = saved_model["model_state_dict"]
+    new_state_dict = {}
+    for key in state_dict.keys():
+        new_key = key.replace("module.", "", 1) if key.startswith("module.") else key
+        new_state_dict[new_key] = state_dict[key]
+    saved_model["model_state_dict"] = new_state_dict
+    return saved_model
+
+
 def get_config(args):
     """Load default configs followed by user configs and populate dataset tags.
     Args:

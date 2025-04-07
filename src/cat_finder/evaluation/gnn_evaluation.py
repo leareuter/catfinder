@@ -7,7 +7,7 @@ import numpy as np
 
 # from objcond.nn_training.modules import inference
 
-from cat_finder.training import gnn_model, datatools
+from cat_finder.training import gnn_model, datatools, utils
 import pandas as pd
 import yaml
 from collections import Counter
@@ -49,12 +49,10 @@ class Evaluation:
         )
         # load model
 
-        loaded_model = torch.load(
-            self.outputdir + f"{self.model}.pt", map_location=torch.device(device)
-        )
+        loaded_model = utils.load_model(modelpath=self.outputdir + f"{self.model}.pt")
 
         print(f'Best model from epoch:{loaded_model["epoch"]} ')
-        self.net.load_state_dict(loaded_model["model_state_dict"], strict=False)
+        self.net.load_state_dict(loaded_model["model_state_dict"])
         # set model to evaluation
         self.net.eval()
 
